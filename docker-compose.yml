@@ -1,0 +1,21 @@
+version: '3'
+services:
+  localhost:
+    image : mysql:5.6
+    environment:
+       MYSQL_DATABASE: cook
+       MYSQL_USER: root
+       MYSQL_PASSWORD: root
+       MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+
+  demo:
+    image : demo:latest
+    ports:
+        - "8086:8086"
+    build:
+        context: ./
+    depends_on:
+      - localhost
+
